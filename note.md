@@ -1,5 +1,7 @@
 #salalchemy
+
 ##relationship
+
 - 一对多
 假设有两个表, 人员和项目, 1个人员对应多个项目, 那么model如下:
 > class Person(db.Model):
