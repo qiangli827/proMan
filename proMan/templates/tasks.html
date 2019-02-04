@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+  {# 添加的表单 #}
+  <form class="form" method="post">
+    任务名称 <input type="text" name="task" autocomplete="on" required> <br>
+    所属项目 <input type="text" name="project" autocomplete="on" required> <br>
+    <input class="btn" type="submit" name="add" value="添加">
+  </form>
+
+
+  {# 展示的表格 #}
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>任务</th>
+        <th>项目</th>
+        <th>资源</th>
+        <th>开始</th>
+        <th>结束</th>
+        <th>历时</th>
+        <th>完成</th>
+        <th>前提</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in tasks %}
+        <tr>
+          <td>{{ task.task }}</td>
+          <td>{{ task.project }}</td>
+          <td>{{ task.resource }}</td>
+          <td>{{ task.start_date }}</td>
+          <td>{{ task.end_date }}</td>
+          <td>{{ task.duration }}</td>
+          <td>{{ task.pct_complete }}</td>
+          <td>{{ task.dependencies }}</td>
+          <td>
+            <span class="float-right">
+              {# 编辑按钮 #}
+              <a class="btn" href="{{ url_for('edit', task_id=task.task_id) }}">编辑</a>
+              {# 删除按钮 #}
+              <form class="inline-form" action="{{ url_for('delete', task_id=task.task_id) }}" method="post">
+                <input class="btn" type="submit" name="delete" value="删除" onclick="return confirm('确定删除?')">
+              </form>
+            </span>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- {# 展示的表单 #}
+  {% for task in tasks %}
+    <ul class="movie-list">
+      <li>{{ task.task }} - {{ task.project }}
+        <span class="float-right">
+          {# 编辑按钮 #}
+          <a class="btn" href="{{ url_for('edit', task_id=task.task_id) }}">编辑</a>
+          {# 删除按钮 #}
+          <form class="inline-form" action="{{ url_for('delete', task_id=task.task_id) }}" method="post">
+            <input class="btn" type="submit" name="delete" value="删除" onclick="return confirm('确定删除?')">
+          </form>
+        </span>
+      </li>
+    </ul>
+  {% endfor %} -->
+
+
+{% endblock%}

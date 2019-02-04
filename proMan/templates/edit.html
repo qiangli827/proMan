@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+  <form class="form" method="post">
+    任务名称 <input type="text" name="task" value="{{ task.task }}" autocomplete="on" required> <br>
+    所属项目 <input type="text" name="project" value="{{ task.project }}" autocomplete="on" required> <br>
+    <input class="btn" type="submit" name="update" value="编辑">
+  </form>
+
+{% endblock %}
