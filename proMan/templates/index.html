@@ -1,12 +1,31 @@
 {% extends 'base.html' %}
 
 {% block body %}
-  <div class="jumbotron text-center">
-    <h1>2019年细分行业及灯塔项目管理</h1>
-    <p class="lead">聚焦重点行业，把控过程管理。</p>
-  </div>
 
-  <!-- <div class="jumbotron">
-    <img src="http://www.sh-liangxin.com/upload/images/20190104/%E5%B8%82%E5%9C%BA%E9%83%A8-%E5%A8%87190102-Banner34852816.jpg" alt="20 years" width="100%">
-  </div> -->
+<div class="container">
+
+{# 封面 #}
+<div class="jumbbotron">
+    <img class="img-fluid" src="http://www.sh-liangxin.com/upload/images/20190104/市场部-娇190102-Banner34852816.jpg" alt="良信电器20年">
+</div>
+<br>
+
+{# 项目面板 #}
+<div class="row">
+{% for project in projects %}
+<div class="col-sm-3">
+  <div class="card">
+    <img src="{{ url_for('static', filename='images/card-now.jpg') }}" alt="something">
+    <div class="card-body">
+      <h5 class="card-title">
+        <a class="btn btn-primary" href="{{ url_for('project', project_id=project.id) }}">{{ project.name }}</a>
+      </h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    </div>
+  </div>
+</div>
+{% endfor %}
+</div>
+</div>
+
 {% endblock%}

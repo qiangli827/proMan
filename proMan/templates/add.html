@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+  {# 添加的表单 #}
+  <form method="post">
+    <div class="form-group">
+        <label for="exampleFormControlInput1">所属项目</label> 
+        <input name="project_name" type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">任务名称</label> 
+        <input name="task_name" type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">所需资源</label> 
+        <input name="resource" type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">开始日期</label> 
+        <input name="start_date" type="text" class="form-control" id="exampleFormControlInput1" placeholder="2019/1/1">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">结束日期</label> 
+        <input name="end_date" type="text" class="form-control" id="exampleFormControlInput1" placeholder="2019/1/1">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">历时天数</label> 
+        <input name="duration" type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">完成进度</label> 
+        <input name="pct_complete" type="text" class="form-control" id="exampleFormControlInput1" placeholder="0-100">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">前提任务</label> 
+        <input name="dependencies" type="text" class="form-control" id="exampleFormControlInput1" placeholder="必须是已有的任务">
+    </div>
+    <input class="btn btn-primary" type="submit" name="add" value="添加">
+  </form>
+
+{% endblock%}

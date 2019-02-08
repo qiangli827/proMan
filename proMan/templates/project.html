@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+
+{% block nav_project %}
+<li class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" 
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{ project.name }}
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        {% for project in projects %}
+        <a class="dropdown-item" href="{{ url_for('project', project_id=project.id) }}">
+        {{ project.name }}
+        </a>
+        {% endfor %}
+    </div>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('tasks', project_id=project.id) }}">任务</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('discuss', project_id=project.id) }}">群聊</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('summary', project_id=project.id) }}">统计</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('files', project_id=project.id) }}">文件</a>
+</li>
+
+{% endblock nav_project %}
+
+
+
+
+{% block body %}
+
+{# 项目概览 #}
+<div class="container">
+    <h3>概览</h3>
+    <div class="jumbotron">
+        <p>当前用户是: {{ person.name }}</p>
+        <p>当前项目是: {{ project.name }} </p>
+    </div>
+</div>
+
+{% endblock body %}

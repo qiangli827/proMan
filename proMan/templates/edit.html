@@ -2,10 +2,40 @@
 
 {% block body %}
 
-  <form class="form" method="post">
-    任务名称 <input type="text" name="task" value="{{ task.task }}" autocomplete="on" required> <br>
-    所属项目 <input type="text" name="project" value="{{ task.project }}" autocomplete="on" required> <br>
-    <input class="btn" type="submit" name="update" value="编辑">
+  <form method="post">
+    <div class="form-group">
+        <label for="exampleFormControlInput1">所属项目</label> 
+        <input name="project_name" value="{{ task.project.name }}" type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">任务名称</label> 
+        <input name="task_name" value="{{ task.name }}" type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">所需资源</label> 
+        <input name="resource" value="{{ task.resource }}" type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">开始日期</label> 
+        <input name="start_date" value="{{ task.start_date }}" type="text" class="form-control" id="exampleFormControlInput1" placeholder="2019/1/1">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">结束日期</label> 
+        <input name="end_date" value="{{ task.end_date }}" type="text" class="form-control" id="exampleFormControlInput1" placeholder="2019/1/1">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">历时天数</label> 
+        <input name="duration" value="{{ task.duration }}" type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">完成进度</label> 
+        <input name="pct_complete" value="{{ task.pct_complete }}" type="text" class="form-control" id="exampleFormControlInput1" placeholder="0-100">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">前提任务</label> 
+        <input name="dependencies" value="{{ task.dependencies }}" type="text" class="form-control" id="exampleFormControlInput1" placeholder="必须是已有的任务">
+    </div>
+    <input class="btn btn-primary" type="submit" value="编辑">
   </form>
 
 {% endblock %}
