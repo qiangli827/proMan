@@ -2,7 +2,7 @@
 
 {% block body %}
   <p class="container">
-    <a href="{{ url_for('tasks_add') }}" class="btn btn-primary btn-sm float-right">添加任务</a>
+    <a href="{{ url_for('tasks_add', project_id=project.id) }}" class="btn btn-primary btn-sm float-right">添加任务</a>
     <br>
   </p>
   {# 展示的表格 #}
@@ -21,7 +21,7 @@
             <th scope="col">历时</th>
             <th scope="col">完成</th>
             <th scope="col">前提</th>
-            <th scope="col">操作</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -39,9 +39,9 @@
                 <td>
                   <span class="float-right">
                     {# 编辑按钮 #}
-                    <a class="btn btn-warning btn-sm" href="{{ url_for('edit', task_id=task.id) }}">编辑</a>
+                    <a class="btn btn-warning btn-sm" href="{{ url_for('edit', task_id=task.id, project_id=project.id) }}">编辑</a>
                     {# 删除按钮 #}
-                    <form class="d-inline" action="{{ url_for('delete', task_id=task.id) }}" method="post">
+                    <form class="d-inline" action="{{ url_for('delete', project_id=project.id, task_id=task.id) }}" method="post">
                       <input class="btn btn-danger btn-sm" type="submit" value="删除" 
                              onclick="return confirm('are you sure?')">
                     </form>

@@ -39,11 +39,18 @@ def files(project_id):
     project = Project.query.get_or_404(project_id)
     tasks = project.tasks
     return render_template('files.html', project=project, tasks=tasks)
+# 日历
+@app.route('/project/<int:project_id>/calendar')
+def calendar(project_id):
+    project = Project.query.get_or_404(project_id)
+    tasks = project.tasks
+    return render_template('calendar.html', project=project, tasks=tasks)
 
 
 # 添加任务
-@app.route('/task/add', methods=['GET', 'POST'])
-def tasks_add():
+@app.route('/project/<int:project_id>/task/add', methods=['GET', 'POST'])
+def tasks_add(project_id):
+    project = Project.query.get_or_404(project_id)
     if request.method == 'POST':
         task_name = request.form.get('task_name')
         project_name = request.form.get('project_name')
@@ -66,11 +73,12 @@ def tasks_add():
         db.session.add(task)
         db.session.commit()
         flash('添加任务成功')
-        return redirect(url_for('tasks'))
-    return render_template('add.html')
+        return redirect(url_for('tasks', project_id=project.id))
+    return render_template('add.html', project=project)
 # 编辑任务
-@app.route('/task/edit/<int:task_id>', methods=['GET', 'POST'])
-def edit(task_id):
+@app.route('/project/<int:project_id>/task/<int:task_id>/edit', methods=['GET', 'POST'])
+def edit(project_id, task_id):
+    project = Project.query.get_or_404(project_id)
     task = Task.query.get_or_404(task_id)
     # 编辑任务
     if request.method == 'POST':
@@ -94,17 +102,18 @@ def edit(task_id):
         task.project = project
         db.session.commit()
         flash('任务编辑成功')
-        return redirect(url_for('tasks'))
-    return render_template('edit.html', task=task)
+        return redirect(url_for('tasks', project_id=project.id))
+    return render_template('edit.html', task=task, project=project)
 
 # 删除任务
-@app.route('/task/delete/<int:task_id>', methods=['POST'])
-def delete(task_id):
+@app.route('/project/<int:project_id>/task/<int:task_id>/delete', methods=['POST'])
+def delete(project_id, task_id):
+    project = Project.query.get_or_404(project_id)
     task = Task.query.get_or_404(task_id)
     # 删除任务
     db.session.delete(task)
     db.session.commit()
     flash('任务删除成功')
-    return redirect(url_for('tasks'))
+    return redirect(url_for('tasks', project_id=project.id))
 
 # 测试
