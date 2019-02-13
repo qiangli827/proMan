@@ -10,6 +10,7 @@ pylint = "*"
 flask = "*"
 flask-sqlalchemy = "*"
 python-dotenv = "*"
+plotly = "*"
 
 [requires]
 python_version = "3.7"
