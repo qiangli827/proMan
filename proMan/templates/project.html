@@ -21,16 +21,16 @@
     <a class="nav-link" href="{{ url_for('tasks', project_id=project.id) }}">任务</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="{{ url_for('discuss', project_id=project.id) }}">群聊</a>
+    <a class="nav-link" href="{{ url_for('progress', project_id=project.id) }}">进展</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="{{ url_for('summary', project_id=project.id) }}">统计</a>
+    <a class="nav-link" href="{{ url_for('persons', project_id=project.id) }}">人员</a>
 </li>
 <li class="nav-item">
     <a class="nav-link" href="{{ url_for('files', project_id=project.id) }}">文件</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="{{ url_for('calendar', project_id=project.id) }}">日历</a>
+    <a class="nav-link" href="{{ url_for('expense', project_id=project.id) }}">费用</a>
 </li>
 
 {% endblock nav_project %}
@@ -46,6 +46,7 @@
     <div class="jumbotron">
         <p>当前用户是: {{ person.name }}</p>
         <p>当前项目是: {{ project.name }} </p>
+        <p>航空科技环境股份的</p>
     </div>
 </div>
 

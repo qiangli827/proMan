@@ -21,30 +21,30 @@ def tasks(project_id):
     tasks = project.tasks
     return render_template('tasks.html', project=project, tasks=tasks)
 
-# 群聊
-@app.route('/project/<int:project_id>/discuss')
-def discuss(project_id):
+# 进展
+@app.route('/project/<int:project_id>/progress')
+def progress(project_id):
     project = Project.query.get_or_404(project_id)
     tasks = project.tasks
-    return render_template('discuss.html', project=project, tasks=tasks)
-# 统计
-@app.route('/project/<int:project_id>/summary')
-def summary(project_id):
+    return render_template('progress.html', project=project, tasks=tasks)
+# 人员
+@app.route('/project/<int:project_id>/persons')
+def persons(project_id):
     project = Project.query.get_or_404(project_id)
     tasks = project.tasks
-    return render_template('summary.html', project=project, tasks=tasks)
+    return render_template('persons.html', project=project, tasks=tasks)
 # 文件
 @app.route('/project/<int:project_id>/files')
 def files(project_id):
     project = Project.query.get_or_404(project_id)
     tasks = project.tasks
     return render_template('files.html', project=project, tasks=tasks)
-# 日历
-@app.route('/project/<int:project_id>/calendar')
-def calendar(project_id):
+# 费用
+@app.route('/project/<int:project_id>/expense')
+def expense(project_id):
     project = Project.query.get_or_404(project_id)
     tasks = project.tasks
-    return render_template('calendar.html', project=project, tasks=tasks)
+    return render_template('expense.html', project=project, tasks=tasks)
 
 
 # 添加任务

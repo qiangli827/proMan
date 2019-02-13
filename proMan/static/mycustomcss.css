@@ -1,0 +1,17 @@
+/*!
+// CSS only Responsive Tables
+// http://dbushell.com/2016/03/04/css-only-responsive-tables/
+// by David Bushell
+*/
+.tr-nowrap {
+    /*!
+    // IE needs inline-block to position scrolling shadows otherwise use:
+    // display: block;
+    // max-width: min-content;
+    */
+    white-space: nowrap;
+}
+
+.tr-min-width {
+    min-width: 100px;
+}

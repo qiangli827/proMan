@@ -12,8 +12,6 @@
         <caption>任务清单</caption>
         <thead class="thead-light">
           <tr>
-            <th scope="col">序号</th>
-            <th scope="col">项目</th>
             <th scope="col">任务</th>
             <th scope="col">资源</th>
             <th scope="col">开始</th>
@@ -27,9 +25,7 @@
         <tbody>
             {% for task in project.tasks %}
               <tr>
-                <th scope="row">{{ task.id }}</th>
-                <td>{{ project.name }}</td>
-                <td>{{ task.name }}</td>
+                <th scope="row">{{ task.name }}</th>
                 <td>{{ task.resource }}</td>
                 <td>{{ task.start_date }}</td>
                 <td>{{ task.end_date }}</td>
