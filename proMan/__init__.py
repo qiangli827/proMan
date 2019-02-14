@@ -16,6 +16,14 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev')
 db = SQLAlchemy(app)
 
+# file upload
+UPLOAD_FOLDER = os.path.join(app.root_path, 'static', 'uploaded_files')
+ALLOWED_EXTENSIONS = set(['jpg', 'jpeg', 'png', 'pdf', 'txt'])
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+
 # 注册环境变量
 @app.context_processor
 def inject_person():

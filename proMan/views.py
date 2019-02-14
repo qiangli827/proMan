@@ -1,6 +1,29 @@
-from proMan import app, db
+import os
+from proMan import app, db, allowed_file
 from proMan.models import Task, Project
-from flask import Flask, render_template, url_for, request, flash, redirect
+from flask import Flask, render_template, url_for, request, flash, redirect, send_from_directory
+from werkzeug import secure_filename
+
+# 上传文件
+@app.route('/project/<int:project_id>/files/uploads', methods=['GET', 'POST'])
+def upload_file(project_id):
+    project = Project.query.get_or_404(project_id)
+    tasks = project.tasks
+    if request.method == 'POST':
+        file = request.files['file']
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            if str(project_id) not in os.listdir(app.config['UPLOAD_FOLDER']):
+                os.mkdir(str(project_id))
+            save_file = os.path.join(app.config['UPLOAD_FOLDER'], str(project_id)) + '\\' + filename
+            file.save(save_file)
+            return redirect(url_for('uploaded_file', project_id=project_id, filename=filename))
+    return render_template('files.html', project=project, tasks=tasks)
+
+# 上传后展示文件
+@app.route('/project/<int:project_id>/files/<filename>')
+def uploaded_file(project_id, filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER']+'\\'+str(project_id), filename)
 
 # 首页
 @app.route('/')
